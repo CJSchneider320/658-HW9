@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <title>My Vanilla.js App</title>
+    <script src="./index.js"></script>
+  </head>
+  <body>
+    <div>
+        <strong>The Road Not Taken, Robert Frost</strong>
+    </div>
+    <div id="poem">
+    </div>
+    <div id="buttonContainer">
+        <button onclick="changeText()">Next Line</button>
+    </div>
+  </body>
+</html>
+
+<script>
+    let poem = [
+        "Two roads diverged in a yellow wood,",
+        "And sorry I could not travel both",
+        "And be one traveler, long I stood",
+        "And looked down one as far as I could",
+        "To where it bent in the undergrowth;",
+        "brk",
+        "Then took the other, as just as fair,",
+        "And having perhaps the better claim,",
+        "Because it was grassy and wanted wear;",
+        "Though as for that the passing there",
+        "Had worn them really about the same,",
+        "brk",
+        "And both that morning equally lay",
+        "In leaves no step had trodden black.",
+        "Oh, I kept the first for another day!",
+        "Yet knowing how way leads on to way,",
+        "I doubted if I should ever come back.",
+        "brk",
+        "I shall be telling this with a sigh",
+        "Somewhere ages and ages hence:",
+        "Two roads diverged in a wood, and I—",
+        "I took the one less traveled by,",
+        "And that has made all the difference.",
+    ]
+
+    let count = 0
+
+    function changeText() {
+        if (count < poem.length) {
+            if(poem[count] === "brk") {
+                document.getElementById("poem").innerHTML += "<br/>"
+                count++
+            }
+            else {
+                document.getElementById("poem").innerHTML += "<p>" + poem[count] + "</p>";
+                count++;
+            }
+        }
+
+        if(count === poem.length) {
+            document.getElementById("buttonContainer").innerHTML = "<button onclick=\"restart()\"> Restart </button>"
+        }
+    }
+
+    function restart() {
+        count = 0;
+        document.getElementById("poem").innerHTML = "";
+        document.getElementById("buttonContainer").innerHTML = "<button onclick=\"changeText()\"> Next Line </button>"
+    }
+</script>
